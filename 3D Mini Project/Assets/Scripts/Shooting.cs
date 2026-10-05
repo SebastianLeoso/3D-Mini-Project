@@ -14,6 +14,7 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         magSize = 30;
+        gunDamage = 20;
     }
 
     public void ShootGun()
@@ -23,6 +24,8 @@ public class Shooting : MonoBehaviour
 
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            hit.collider.GetComponent<EnemyBehavior>().health -= gunDamage;
+            Debug.Log(hit.collider.GetComponent<EnemyBehavior>().health);
         }
         magSize -= 1;
     }
